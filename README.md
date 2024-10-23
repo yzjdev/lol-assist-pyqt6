@@ -10,9 +10,9 @@ ui参考[Seraphine](https://github.com/Zzaphkiel/Seraphine)，抄了部分代码
 
 ![1](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/1.png])
 
-![2](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/1.png)
+![2](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/2.png)
 
-![3](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/1.png)
+![3](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/3.png)
 
 ## 依赖
 
