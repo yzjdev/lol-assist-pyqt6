@@ -1,0 +1,19 @@
+{
+    "ChampSelectCard": {
+        "EnableAutoAccept": true,
+        "EnableAutoSelect": true,
+        "WantBanChamps": [],
+        "WantSelectChamps": [
+            157,
+            3
+        ]
+    },
+    "GameCard": {
+        "EnableAutoReconnect": false,
+        "EnableAutoSearch": false
+    },
+    "QFluentWidgets": {
+        "ThemeColor": "#ff009faa",
+        "ThemeMode": "Light"
+    }
+}
