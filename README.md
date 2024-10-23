@@ -8,7 +8,7 @@ ui参考[Seraphine](https://github.com/Zzaphkiel/Seraphine)，抄了部分代码
 
 ## 截图
 
-![1](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/1.png])
+![1](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/1.png)
 
 ![2](https://github.com/yzjdev/lol-assist-pyqt6/blob/main/screenshots/2.png)
 
