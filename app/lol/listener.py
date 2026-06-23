@@ -11,7 +11,7 @@ class LcuProcessListener(QThread):
         self.daemon = True
 
     def run(self):
-        while True:
+        while not self.isInterruptionRequested():
             pids = get_lcu_pids()
 
             match len(pids):
@@ -37,4 +37,7 @@ class LcuProcessListener(QThread):
                         self.running_pid = pid
                         signal_bus.lcu_changed.emit(pid)
 
-            self.msleep(1500)
+            for _ in range(15):
+                if self.isInterruptionRequested():
+                    return
+                self.msleep(100)

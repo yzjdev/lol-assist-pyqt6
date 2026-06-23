@@ -20,7 +20,6 @@ class MainWindow(QWidget):
         # splash
         self.splash_screen = SplashScreen(self)
         self.splash_screen.setFixedSize(800, 600)
-        self.show()
 
         self.main_box = QVBoxLayout(self)
 
@@ -211,6 +210,8 @@ class MainWindow(QWidget):
 
     @asyncClose
     async def closeEvent(self, event):
+        self.lcu_process_listener.requestInterruption()
         await self.__on_lcu_stopped()
-        self.lcu_process_listener.terminate()
+        if self.lcu_process_listener.isRunning():
+            await asyncio.to_thread(self.lcu_process_listener.wait)
         return super().closeEvent(event)

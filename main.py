@@ -8,11 +8,18 @@ from app.view.main_window import MainWindow
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setApplicationName('LOL助手')
 
     event_loop = QEventLoop(app)
     asyncio.set_event_loop(event_loop)
-    app_close_event = asyncio.Event()
-    app.aboutToQuit.connect(app_close_event.set)
+    app_close_future = event_loop.create_future()
+
+    def resolve_app_close_future():
+        if not app_close_future.done():
+            app_close_future.set_result(None)
+
+    app.lastWindowClosed.connect(resolve_app_close_future)
+    app.aboutToQuit.connect(resolve_app_close_future)
 
     w = MainWindow()
 
@@ -21,4 +28,4 @@ if __name__ == '__main__':
     w.setFixedSize(800, 600)
     w.show()
     with event_loop:
-        event_loop.run_until_complete(app_close_event.wait())
+        event_loop.run_until_complete(app_close_future)
