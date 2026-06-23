@@ -21,6 +21,6 @@ pip install pyperclip psutil asyncio aiohttp qasync PyQt6-Fluent-Widgets pyinsta
 ```
 
 ```打包exe
-pyinstaller main.py
+pyinstaller main.py  有main.spec可直接执行下面的命令
 pyinstaller --clean --noconfirm main.spec
 ```
