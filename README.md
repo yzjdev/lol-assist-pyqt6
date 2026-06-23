@@ -17,5 +17,10 @@ ui参考[Seraphine](https://github.com/Zzaphkiel/Seraphine)，抄了部分代码
 ## 依赖
 
 ```
-pip install pyperclip psutil asyncio aiohttp qasync PyQt6-Fluent-Widgets
+pip install pyperclip psutil asyncio aiohttp qasync PyQt6-Fluent-Widgets pyinstaller
+```
+
+```打包exe
+pyinstaller main.py
+pyinstaller --clean --noconfirm main.spec
 ```

@@ -19,6 +19,9 @@ class LcuWebsocket:
         self.token = token
         self.events = []
         self.subscribes = []
+        self.session = None
+        self.ws = None
+        self.task = None
 
     def subscribe(self, event, uri: str = '', event_types: tuple = ('Update', 'Create', 'Delete')):
         def wrapper(func):
@@ -53,6 +56,10 @@ class LcuWebsocket:
                 await asyncio.sleep(1)
 
         print('ws started')
+        if not self.ws:
+            await self.session.close()
+            return
+
         for event in self.events:
             await self.ws.send_json([5, event])
         while True:
@@ -76,12 +83,16 @@ class LcuWebsocket:
         self.task = asyncio.create_task(self.run_ws())
 
     async def close(self):
-        self.task.cancel()
-        if self.session:
+        if self.task and not self.task.done():
+            self.task.cancel()
+        if self.session and not self.session.closed:
             await self.session.close()
 
 
 class Lcu:
+    def __init__(self):
+        self.listener = None
+        self.session = None
 
     async def start(self, pid, debug=False):
         self.debug = debug
@@ -93,9 +104,12 @@ class Lcu:
         await self.run_ws_listener()
 
     async def close(self):
-        await self.listener.close()
-        if self.session:
+        if self.listener:
+            await self.listener.close()
+            self.listener = None
+        if self.session and not self.session.closed:
             await self.session.close()
+        self.session = None
 
     async def run_ws_listener(self):
         self.listener = LcuWebsocket(self.port, self.token)
